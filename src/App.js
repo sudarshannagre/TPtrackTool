@@ -1,24 +1,41 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Communication from './Communication';
+import Login from './Login';
+import StaffDetails from './StaffDetails';
+import StaffHome from './StaffHome';
+import StaffLogin from './StaffLogin';
+import StudentHome from './StudentHome';
+import StudentSignup from './StudentSignup';
+import TrainerDetails from './TrainerDetails';
 
 function App() {
+  useEffect(()=>{
+    var user = localStorage.getItem("userName");
+    if(user === ""){
+      
+    }
+
+  },[]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<StaffLogin/>}/>
+          <Route path='studentHome' element={<StudentHome/>}/>
+          <Route path='staffHome' element={<StaffHome/>}/>
+          <Route path='staffDetails' element={<StaffDetails/>}/>
+          <Route path='trainerDetails' element={<TrainerDetails/>}/>
+          <Route path='studentSignup' element={<StudentSignup/>}/>
+          <Route path='/studentLogin' element={<Login/>}/>
+          <Route path='communication' element={<Communication/>} />
+        </Routes>
+      </BrowserRouter>
+
+    </>
   );
 }
 
